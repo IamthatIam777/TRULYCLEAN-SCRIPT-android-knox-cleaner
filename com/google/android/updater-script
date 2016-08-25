@@ -1,0 +1,58 @@
+ui_print("");
+ui_print("");
+ui_print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+ui_print("%%%%%%%%%% TRULYCLEAN SCRIPT %%%%%%%%%%");
+ui_print("%%%%%%%%% REMOVE MORE S-SHIT :P %%%%%%%");
+ui_print("%%%%%%%% For Android 4.2.2 + 4.3 %%%%%%");
+ui_print(" %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");	   
+ui_print("  %%%% v3.0.2  modded by Kaito95%%%%%%%");
+ui_print("   %%%  Credits to schoolsux @xda %%%%%");
+ui_print("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+ui_print("");
+ui_print("");
+ui_print("Running script & cleaning up...");
+
+package_extract_file("busybox", "/tmp/busybox");
+set_perm(0, 0, 0777, "/tmp/busybox");
+run_program("/tmp/busybox", "mount", "/system");
+run_program("/tmp/busybox", "mount", "/data");
+run_program("/tmp/busybox", "mount", "/cache");
+
+ui_print("");
+
+ui_print("Removing apps and releated stuff...");
+
+delete("/system/app/KNOXAgent.apk");
+delete("/system/app/KNOXAgent.odex");
+delete("/system/app/KLMSAgent.apk");
+delete("/system/app/KLMSAgent.odex");
+delete("/system/app/KnoxAttestationAgent.apk");
+delete("/system/app/KnoxAttestationAgent.odex");
+delete("/system/app/KNOXStore.apk");
+delete("/system/app/KNOXStore.odex");
+delete("/system/app/ContainerAgent.apk");
+delete("/system/app/ContainerAgent.odex");
+delete("/system/lib/libknoxdrawglfunction.so");
+
+delete_recursive("/data/data/com.sec.knox.seandroid");
+delete_recursive("/data/data/com.sec.knox.store");
+delete_recursive("/data/data/com.sec.knox.containeragent");
+delete_recursive("/data/data/com.samsung.android.walletmanager");
+delete_recursive("/system/etc/secure_storage/com.sec.knox.store");
+
+ui_print("Deleting Android 4.3 Stuffs...");
+delete("/system/app/KNOXStub.apk");
+delete("/system/app/ContainerEventsRelayManager.apk");
+delete("/system/app/ContainerEventsRelayManager.odex");
+
+ui_print("Deleting folders and misc...");
+delete_recursive("/system/containers");
+delete_recursive("/system/preloadedsso");
+delete_recursive("/data/dalvik-cache");
+delete_recursive("/cache");
+
+run_program("/tmp/busybox", "umount", "/system");
+run_program("/tmp/busybox", "umount", "/data");
+
+ui_print("Done, enjoy!");
+
